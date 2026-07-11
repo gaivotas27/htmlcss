@@ -1,15 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosso Pequeno Segredo ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+body{background:linear-gradient(135deg,#ff5f9e,#ff7eb3,#ffc3d9);min-height:100vh;display:flex;justify-content:center;align-items:center;overflow:hidden;}
+.container{width:90%;max-width:650px;background:rgba(255,255,255,.18);backdrop-filter:blur(15px);border-radius:25px;padding:35px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.25);}
+h1{color:white;font-size:36px;margin-bottom:10px;}
+p{color:white;margin-bottom:25px;}
+button{width:100%;padding:18px;margin:10px 0;border:none;border-radius:18px;font-size:18px;cursor:pointer;transition:.3s;background:white;color:#ff4d88;font-weight:bold;}
+button:hover{transform:scale(1.03);}
+.trancado{background:#ffd6e5;color:#999;cursor:not-allowed;}
+#mensagem{margin-top:30px;background:rgba(255,255,255,.25);border-radius:18px;padding:25px;min-height:140px;color:white;font-size:22px;display:flex;align-items:center;justify-content:center;line-height:1.6;}
+.coracao{position:fixed;top:-20px;color:white;animation:cair linear infinite;opacity:.7;}
+@keyframes cair{from{transform:translateY(-10vh);}to{transform:translateY(110vh);}}
+</style>
 </head>
 <body>
-    <header>
-        <h1>
-            teste para hospedagem
-        </h1>
-    </header>
+<div class="container">
+<h1>❤️ Nosso Pequeno Segredo ❤️</h1>
+<p>Abra um coração por vez...</p>
+<button onclick="abrir(0)">💖 Coração 1</button>
+<button id="b2" class="trancado" disabled>🔒 Coração 2</button>
+<button id="b3" class="trancado" disabled>🔒 Coração 3</button>
+<button id="b4" class="trancado" disabled>🔒 Coração 4</button>
+<button id="b5" class="trancado" disabled>🔒 Coração 5</button>
+<button id="bau" class="trancado" disabled>💝 Baú do Amor</button>
+<div id="mensagem">Clique no primeiro coração. ❤️</div>
+</div>
+<script>
+const mensagens=[
+"❤️ Existe um momento reservado apenas para nós dois.",
+"💕 Esse momento já tem um lugar guardado no meu coração.",
+"🥰 Cada dia ao seu lado me dá ainda mais certeza do que eu sinto.",
+"💖 Em breve vou criar uma lembrança que vamos carregar para sempre.",
+"💌 Você já descobriu quase tudo... mas o melhor ainda está escondido.",
+"🔒 O Baú do Amor continua fechado...<br><br>A chave aparecerá no momento perfeito. ❤️"
+];
+const botoes=["b2","b3","b4","b5","bau"];
+function abrir(i){
+document.getElementById("mensagem").innerHTML=mensagens[i];
+if(i<5){
+let b=document.getElementById(botoes[i]);
+b.disabled=false;
+b.classList.remove("trancado");
+b.innerHTML=b.innerHTML.replace("🔒","💖");
+b.setAttribute("onclick","abrir("+(i+1)+")");
+}}
+for(let i=0;i<30;i++){
+let c=document.createElement("div");
+c.className="coracao";
+c.innerHTML="❤";
+c.style.left=Math.random()*100+"vw";
+c.style.fontSize=(15+Math.random()*20)+"px";
+c.style.animationDuration=(5+Math.random()*6)+"s";
+c.style.animationDelay=Math.random()*5+"s";
+document.body.appendChild(c);
+}
+</script>
 </body>
 </html>
